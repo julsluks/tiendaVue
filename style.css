@@ -1,0 +1,145 @@
+:root {
+  --fontfamily: Arial, Helvetica, sans-serif;
+  --fontvariant: small-caps;
+}
+
+/* estructura de la pagina */
+body {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.estructura {
+  display: grid;
+  grid-template-areas:
+    "superior superior superior"
+    "menu menu tiquet"
+    "inferior inferior inferior";
+}
+
+/* estructura superior */
+.superior {
+  grid-area: superior;
+}
+
+.superior__title {
+  font-family: var(--fontfamily);
+  font-variant: var(--fontvariant);
+  text-align: center;
+}
+
+/* estructura del tiquet */
+.tiquet {
+  grid-area: tiquet;
+}
+
+.tiquet__title {
+  font-family: var(--fontfamily);
+  font-variant: var(--fontvariant);
+  text-align: center;
+  position: sticky;
+  top: 1px;
+}
+
+/* estructura inferior */
+.inferior {
+  grid-area: inferior;
+}
+
+.inferior__title {
+  font-family: var(--fontfamily);
+  font-variant: var(--fontvariant);
+  text-align: center;
+}
+
+/* estructura del menu */
+.menu {
+  grid-area: menu;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /*esto es igual que grid-template-columns: 1fr 1fr 1fr;*/
+}
+
+/* comportamiento del item y su distribucion */
+.item {
+  width: 200px;
+  height: 200px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  position: relative;
+  text-align: center;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.item:hover {
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+}
+
+.item__label {
+  font-family: var(--fontfamily);
+  font-variant: var(--fontvariant);
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  padding: 10px;
+  padding-left: 0;
+  padding-right: 0;
+  background-color: rgba(255, 0, 0, 0.5);
+  /* Color de fondo con transparencia */
+  color: #fff;
+  /* Color de texto */
+}
+
+.item:hover .item__label {
+  visibility: visible;
+  background-color: rgba(0, 0, 255, 0.5);
+  /* Cambia el color de fondo al hacer hover en el ítem */
+}
+
+.item__image {
+  width: 200px;
+  height: 200px;
+}
+
+/* comportamiento de butons del item y su distribucion */
+.butons {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.butons__less,
+.butons__more {
+  width: 30px;
+  height: 30px;
+  margin: 3px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Color de fondo con transparencia */
+  color: #fff;
+  /* Color de texto */
+}
+
+.butons__number {
+  width: 30px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.3);
+  /* Color de fondo con transparencia */
+}
+
+.butons__less:hover,
+.butons__more:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+  /* Cambia el color de fondo al hacer hover en los botones */
+}

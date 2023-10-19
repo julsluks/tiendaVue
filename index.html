@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compra</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="app" class="estructura">
+        <div class="superior">
+            <h1 class="superior__title">Cars movies</h1>
+        </div>
+        <div class="menu">
+            <div id="id1" class="mati item" v-for="movie in movies">
+                <label class="item__label" for="macarrons">{{ movie.Title }}</label>
+                <div class= "item__butons butons">
+                    <input class="butons__less" type= "button" value="-">
+                    <input class="butons__number" type= "text" id="macarrons" name="id1" min=0 max=9>
+                    <input class="butons__more" type="button" value="+">
+                </div>
+                <img class="item__image" :src="movie.Poster">
+            </div>
+        </div>
+        <div class="tiquet">
+            <h3 class="tiquet__title">Tiquet</h3>
+        </div>
+        <footer class="inferior">
+            <h2 class="inferior__title">Inferior</h2>
+        </footer>
+    </div>
+
+    <script src="comunicationManager.js" type="module"></script>
+    <script src="functionsVUE.js" type="module"></script>
+</body>
+</html>
