@@ -17,8 +17,8 @@
             <div id="id1" class="mati item" v-for="movie in movies">
                 <label class="item__label" for="macarrons">{{ movie.Title }}</label>
                 <div class= "item__butons butons">
-                    <input class="butons__less" type= "button" value="-">
-                    <input class="butons__number" type= "text" id="macarrons" name="id1" min=0 max=9>
+                    <input class="butons__less" type= "button" value="-" @click="clickButtonMore(movie)">
+                    <input class="butons__number" type= "text" id="macarrons" name="id1" min=0 readonly :value="movie.counter">
                     <input class="butons__more" type="button" value="+">
                 </div>
                 <img class="item__image" :src="movie.Poster">

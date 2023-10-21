@@ -143,3 +143,7 @@ body {
   background-color: rgba(0, 0, 0, 0.7);
   /* Cambia el color de fondo al hacer hover en los botones */
 }
+
+.butons__number{
+  color: white;
+}
