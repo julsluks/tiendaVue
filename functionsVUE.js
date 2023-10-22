@@ -105,11 +105,11 @@ createApp({
                 this.shopping = false;
                 this.checkout = true;
                 if (localStorage == null) {
-                    this.user.name = localStorage.getItem(user.name);
-                    this.user.surnames = localStorage.getItem(user.surnames);
-                    this.user.DNI = localStorage.getItem(user.DNI);
-                    this.user.residence = localStorage.getItem(user.residence);
-                    this.user.email = localStorage.getItem(user.email);
+                    this.user.name = localStorage.getItem(JSON.parse(user.name));
+                    this.user.surnames = localStorage.getItem(JSON.parse(user.surnames));
+                    this.user.DNI = localStorage.getItem(JSON.parse(user.DNI));
+                    this.user.residence = localStorage.getItem(JSON.parse(user.residence));
+                    this.user.email = localStorage.getItem(JSON.parse(user.email));
                 }
             } else {
                 alert('You cannot check out without choosing first');
@@ -120,10 +120,10 @@ createApp({
             this.checkout = false;
             this.front_page = true;
             if (localStorage == null) {
-                localStorage.setItem(this.user);
+                localStorage.setItem(JSON.stringify(this.user));
             } else {
                 localStorage.clear();
-                localStorage.setItem(this.user);
+                localStorage.setItem(JSON.stringify(this.user));
             }
             //valores iniciales
             this.shopping_cart.products.splice();
