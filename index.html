@@ -1,33 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Compra</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+        integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 </head>
+
 <body>
-    <div id="app" class="estructura">
+    <div id="app" class="estructura bg_front_page">
         <div class="superior">
-            <h1 class="superior__title">Cars movies</h1>
+            <h1 class="superior__title" v-if="front_page">Buy movies</h1>
+            <h1 class="superior__title" v-if="shopping">Cars movies</h1>
+            <div class="superior__div" v-if="shopping">
+                <button class="btnCheckout__button" @click="clickCheckout()">Shopping basket: {{
+                    shopping_cart.totalItems }}</button>
+            </div>
+            <h1 class="superior__title" v-if="checkout">Check out</h1>
         </div>
-        <div class="menu">
+        <div class="btnStart" v-if="front_page">
+            <button class="btnStart__button" @click="clickStartShopping()">Start shopping!</button>
+        </div>
+        <div class="menu" v-if="shopping">
             <div id="id1" class="mati item" v-for="movie in movies">
                 <label class="item__label" for="macarrons">{{ movie.Title }}</label>
-                <div class= "item__butons butons">
-                    <input class="butons__less" type= "button" value="-" @click="clickButtonLess(movie)">
-                    <input class="butons__number" type= "text" id="macarrons" name="id1" min=0 readonly :value="movie.counter">
+                <div class="item__butons butons">
+                    <input class="butons__less" type="button" value="-" @click="clickButtonLess(movie)">
+                    <input class="butons__number" type="text" id="macarrons" name="id1" min=0 readonly
+                        :value="movie.counter">
                     <input class="butons__more" type="button" value="+" @click="clickButtonMore(movie)">
                 </div>
                 <img class="item__image" :src="movie.Poster">
             </div>
         </div>
-        <div class="tiquet">
+        <div class="form" v-if="checkout">
+            <h1 class="form__title">Check out form</h1>
+            <form class="form__form">
+                <label for="nombre">Nombre:</label><br>
+                <input type="text" id="nombre" name="nombre" v-model="user.name" required><br>
+                <label for="apellidos">Apellidos:</label><br>
+                <input type="text" id="apellidos" name="apellidos" v-model="user.surnames" required><br>
+                <label for="dni">DNI:</label><br>
+                <input type="text" id="dni" name="dni" v-model="user.DNI" required><br>
+                <label for="direccion">Dirección Domicilio:</label><br>
+                <input type="text" id="direccion" name="direccion" v-model="user.residence" required><br>
+                <label for="email">Correo Electrónico:</label><br>
+                <input type="email" id="email" name="email" v-model="user.email" required><br>
+                <button class="form__btn" @click="clickBuyForm()">Buy</button>
+            </form>
+        </div>
+        <div class="tiquet" v-if="checkout">
             <h3 class="tiquet__title">Tiquet</h3>
             <div class="tiquet__account account">
-                <div class="account__title title" v-show="titleAccount">
+                <div class="account__title title">
                     <p class="title__name">Nom</p>
                     <p class="title__price">Preu</p>
                     <p class="title__counter">Unitats</p>
@@ -39,7 +69,7 @@
                         <p class="itemCart__counter">{{ product.counter }}</p>
                     </div>
                 </div>
-                <div class="account__total total" v-show="totalAccount">
+                <div class="account__total total">
                     <p class="total__name">Total</p>
                     <p class="total__price">{{ shopping_cart.totalPrice }}€</p>
                     <p class="total__items">{{ shopping_cart.totalItems }}</p>
@@ -47,11 +77,12 @@
             </div>
         </div>
         <footer class="inferior">
-            <h2 class="inferior__title">Inferior</h2>
+            <h2 class="inferior__title">2023 ShopVue</h2>
         </footer>
     </div>
 
     <script src="comunicationManager.js" type="module"></script>
     <script src="functionsVUE.js" type="module"></script>
 </body>
+
 </html>

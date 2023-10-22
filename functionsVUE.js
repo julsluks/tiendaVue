@@ -10,11 +10,28 @@ createApp({
                 totalPrice: 0,
                 totalItems: 0
             },
-            titleAccount: false,
-            totalAccount: false
+            user: {
+                name: '',
+                surnames: '',
+                DNI: '',
+                residence: '',
+                email: ''
+            },
+            front_page: true,
+            shopping: false,
+            checkout: false
         }
     },
     methods: {
+        //front-page_functions
+        clickStartShopping(){
+            this.front_page = false;
+            this.shopping = true;
+            const myElement = document.getElementById('app');
+            myElement.classList.remove('bg_front_page'); // Elimina la clase existente
+            myElement.classList.add('bg_shopping_page');
+        },
+        //shopping_functions
         showTotals() {
             if (this.shopping_cart.products.length == 0) {
                 this.titleAccount = false;
@@ -80,8 +97,29 @@ createApp({
                 //views
                 this.showTotals();
             } else {
-                alert ('Máxim 10 unitats per producte');
+                alert ('Maximum 10 units');
             }
+        },
+        clickCheckout() {
+            if (this.shopping_cart.totalItems > 0) {
+                this.shopping = false;
+                this.checkout = true;
+                if (localStorage == null) {
+                    this.user.name = localStorage.getItem(user.name);
+                    this.user.surnames = localStorage.getItem(user.surnames);
+                    this.user.DNI = localStorage.getItem(user.DNI);
+                    this.user.residence = localStorage.getItem(user.residence);
+                    this.user.email = localStorage.getItem(user.email);
+                }
+            } else {
+                alert('You cannot check out without choosing first');
+            }
+        },
+        //checkout_functions
+        clickBuyForm() {
+            this.checkout = false;
+            this.front_page = true;
+            localStorage.setItem(user);
         }
     },
     created() {

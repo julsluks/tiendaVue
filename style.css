@@ -10,18 +10,38 @@ body {
   margin-right: auto;
 }
 
+.bg_front_page{
+  background-image: url("./img/bg-front-page.jpg"); /* La ruta a imagen de fondo */
+  background-attachment: fixed; /* Fija la imagen en su lugar mientras se desplaza */
+  background-position: center center;
+}
+
+.bg_shopping_page{
+  background-image: url("./img/bg-shopping-page.jpg"); /* La ruta a imagen de fondo */
+  background-attachment: fixed; /* Fija la imagen en su lugar mientras se desplaza */
+  background-position: center center;
+}
+
 .estructura {
   display: grid;
   grid-template-columns: 2fr 2fr 1fr;
+  grid-template-rows: auto 1fr auto;
   grid-template-areas:
     "superior superior superior"
-    "menu menu tiquet"
+    "btnStart btnStart btnStart"
+    "menu menu menu"
+    "form form tiquet"
     "inferior inferior inferior";
+  min-height: 100vh;
 }
 
 /* estructura superior */
 .superior {
   grid-area: superior;
+  background-color: #f1f1f1;
+  color: rgb(43, 43, 43);
+  align-items: center; /* Alinea verticalmente los elementos */
+  text-align: center;
 }
 
 .superior__title {
@@ -30,14 +50,86 @@ body {
   text-align: center;
 }
 
+.superior__div {
+  align-items: center; /* Alinea verticalmente los elementos */
+  text-align: center;
+}
+
+.btnCheckout__button, .form__btn {
+  background-color: #00c1f1;
+  color: #fff;
+  padding: 5px 20px; /* Aumentar el tamaño del botón */
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 30px; /* Aumentar el radio de borde */
+  font-size: 20px; /* Aumentar el tamaño de fuente */
+  font-family: var(--fontfamily);
+  font-variant: var(--fontvariant);
+  text-align: center;
+}
+
+.btnCheckout__button:hover {
+  background-color: #02a7c4;
+  box-shadow: 0 5px 15px rgba(91, 206, 252, 0.6);
+}
+
+.btnStart {
+  grid-area: btnStart;
+  align-items: center; /* Alinea verticalmente los elementos */
+  text-align: center;
+  margin-top: 35vh;
+}
+
+.btnStart__button {
+  background-color: #ff0037;
+  color: #fff;
+  padding: 20px 40px; /* Aumentar el tamaño del botón */
+  border: none;
+  border-radius: 30px; /* Aumentar el radio de borde */
+  font-size: 20px; /* Aumentar el tamaño de fuente */
+  transition: box-shadow 0.3s ease;
+  font-family: var(--fontfamily);
+  font-variant: var(--fontvariant);
+  text-align: center;
+}
+
+.btnStart__button:hover {
+  background-color: #c4022c;
+  box-shadow: 0 5px 15px rgba(252, 91, 91, 0.6);
+}
+
+.form{
+  grid-area: form;
+  color: white;
+  font-family: var(--fontfamily);
+  font-variant: var(--fontvariant);
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.form__form{
+  background-color: rgba(167, 245, 255, 0.7);
+  margin: 10%;
+}
+
+.form__form > label, input, button {
+  margin: 5px;
+  margin-top: 7px;
+}
+
 /* estructura del tiquet */
 .tiquet {
   grid-area: tiquet;
   display: grid;
   grid-template-rows: 1fr 9fr;
-  grid-template-areas: 
-  "title"
-  "account";
+  grid-template-areas:
+    "title"
+    "account";
+  color: rgb(109, 109, 109);
+  background-color: #bbf1ff;
+  min-height: 82.8vh;
 }
 
 .tiquet__title {
@@ -52,10 +144,10 @@ body {
 .tiquet__account {
   grid-area: account;
   display: grid;
-  grid-template-areas: 
-  "title"
-  "itemCart"
-  "total";
+  grid-template-areas:
+    "title"
+    "itemCart"
+    "total";
 }
 
 .account__title {
@@ -69,36 +161,43 @@ body {
   grid-area: itemCart;
 }
 
-.account__total{
+.account__total {
   grid-area: total;
   font-family: var(--fontfamily);
   font-variant: var(--fontvariant);
   text-align: center;
 }
 
-.div__itemCart, .account__title, .account__total {
+.div__itemCart,
+.account__title,
+.account__total {
   display: grid;
   grid-template-columns: 3fr 1fr 1fr;
-  grid-template-areas: 
-  "name price counter";
+  grid-template-areas: "name price counter";
   margin-left: 10px;
 }
 
-.itemCart__name, .title__name, .total__name{
+.itemCart__name,
+.title__name,
+.total__name {
   grid-area: name;
   font-family: var(--fontfamily);
   font-variant: var(--fontvariant);
   text-align: center;
 }
 
-.itemCart__price, .title__price, .total__price{
+.itemCart__price,
+.title__price,
+.total__price {
   grid-area: price;
   font-family: var(--fontfamily);
   font-variant: var(--fontvariant);
   text-align: center;
 }
 
-.itemCart__counter, .title__counter, .total__items{
+.itemCart__counter,
+.title__counter,
+.total__items {
   grid-area: counter;
   font-family: var(--fontfamily);
   font-variant: var(--fontvariant);
@@ -108,6 +207,12 @@ body {
 /* estructura inferior */
 .inferior {
   grid-area: inferior;
+  background-color: #f1f1f1;
+  color: rgb(114, 114, 114);
+  padding: 10px;
+  text-align: center;
+  position: sticky;
+  bottom: 0;
 }
 
 .inferior__title {
@@ -120,7 +225,10 @@ body {
 .menu {
   grid-area: menu;
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /*esto es igual que grid-template-columns: 1fr 1fr 1fr;*/
+  grid-template-columns: repeat(
+    3,
+    1fr
+  ); /*esto es igual que grid-template-columns: 1fr 1fr 1fr;*/
 }
 
 /* comportamiento del item y su distribucion */
@@ -137,7 +245,7 @@ body {
 }
 
 .item:hover {
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+  box-shadow: 5px 5px 10px rgba(255, 255, 255, 0.4);
 }
 
 .item__label {
@@ -207,6 +315,6 @@ body {
   /* Cambia el color de fondo al hacer hover en los botones */
 }
 
-.butons__number{
+.butons__number {
   color: white;
 }
