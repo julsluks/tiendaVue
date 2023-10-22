@@ -119,7 +119,12 @@ createApp({
         clickBuyForm() {
             this.checkout = false;
             this.front_page = true;
-            localStorage.setItem(user);
+            if (localStorage == null) {
+                localStorage.setItem(user);
+            } else {
+                localStorage.clear();
+                localStorage.setItem(user);
+            }
             //valores iniciales
             this.shopping_cart.products.splice();
             this.shopping_cart.totalAccount = 0;
