@@ -120,6 +120,13 @@ createApp({
             this.checkout = false;
             this.front_page = true;
             localStorage.setItem(user);
+            //valores iniciales
+            this.shopping_cart.products.splice();
+            this.shopping_cart.totalAccount = 0;
+            this.shopping_cart.totalItems = 0;
+            this.movies.forEach(element => {
+                element.counter = 0;
+            });
         }
     },
     created() {
