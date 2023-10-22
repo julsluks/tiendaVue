@@ -120,10 +120,10 @@ createApp({
             this.checkout = false;
             this.front_page = true;
             if (localStorage == null) {
-                localStorage.setItem(user);
+                localStorage.setItem(this.user);
             } else {
                 localStorage.clear();
-                localStorage.setItem(user);
+                localStorage.setItem(this.user);
             }
             //valores iniciales
             this.shopping_cart.products.splice();
