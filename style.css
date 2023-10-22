@@ -12,6 +12,7 @@ body {
 
 .estructura {
   display: grid;
+  grid-template-columns: 2fr 2fr 1fr;
   grid-template-areas:
     "superior superior superior"
     "menu menu tiquet"
@@ -32,14 +33,76 @@ body {
 /* estructura del tiquet */
 .tiquet {
   grid-area: tiquet;
+  display: grid;
+  grid-template-rows: 1fr 9fr;
+  grid-template-areas: 
+  "title"
+  "account";
 }
 
 .tiquet__title {
+  grid-area: title;
   font-family: var(--fontfamily);
   font-variant: var(--fontvariant);
   text-align: center;
   position: sticky;
   top: 1px;
+}
+
+.tiquet__account {
+  grid-area: account;
+  display: grid;
+  grid-template-areas: 
+  "title"
+  "itemCart"
+  "total";
+}
+
+.account__title {
+  grid-area: title;
+  position: sticky;
+  top: 5px;
+  height: 25px;
+}
+
+.account__item {
+  grid-area: itemCart;
+}
+
+.account__total{
+  grid-area: total;
+  font-family: var(--fontfamily);
+  font-variant: var(--fontvariant);
+  text-align: center;
+}
+
+.div__itemCart, .account__title, .account__total {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr;
+  grid-template-areas: 
+  "name price counter";
+  margin-left: 10px;
+}
+
+.itemCart__name, .title__name, .total__name{
+  grid-area: name;
+  font-family: var(--fontfamily);
+  font-variant: var(--fontvariant);
+  text-align: center;
+}
+
+.itemCart__price, .title__price, .total__price{
+  grid-area: price;
+  font-family: var(--fontfamily);
+  font-variant: var(--fontvariant);
+  text-align: center;
+}
+
+.itemCart__counter, .title__counter, .total__items{
+  grid-area: counter;
+  font-family: var(--fontfamily);
+  font-variant: var(--fontvariant);
+  text-align: center;
 }
 
 /* estructura inferior */

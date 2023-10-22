@@ -17,15 +17,34 @@
             <div id="id1" class="mati item" v-for="movie in movies">
                 <label class="item__label" for="macarrons">{{ movie.Title }}</label>
                 <div class= "item__butons butons">
-                    <input class="butons__less" type= "button" value="-" @click="clickButtonMore(movie)">
+                    <input class="butons__less" type= "button" value="-" @click="clickButtonLess(movie)">
                     <input class="butons__number" type= "text" id="macarrons" name="id1" min=0 readonly :value="movie.counter">
-                    <input class="butons__more" type="button" value="+">
+                    <input class="butons__more" type="button" value="+" @click="clickButtonMore(movie)">
                 </div>
                 <img class="item__image" :src="movie.Poster">
             </div>
         </div>
         <div class="tiquet">
             <h3 class="tiquet__title">Tiquet</h3>
+            <div class="tiquet__account account">
+                <div class="account__title title" v-show="titleAccount">
+                    <p class="title__name">Nom</p>
+                    <p class="title__price">Preu</p>
+                    <p class="title__counter">Unitats</p>
+                </div>
+                <div class="account__item div">
+                    <div class=" div__itemCart itemCart" v-for="product in shopping_cart.products">
+                        <p class="itemCart__name">{{ product.Title }}</p>
+                        <p class="itemCart__price">{{ product.price }}€</p>
+                        <p class="itemCart__counter">{{ product.counter }}</p>
+                    </div>
+                </div>
+                <div class="account__total total" v-show="totalAccount">
+                    <p class="total__name">Total</p>
+                    <p class="total__price">{{ shopping_cart.totalPrice }}€</p>
+                    <p class="total__items">{{ shopping_cart.totalItems }}</p>
+                </div>
+            </div>
         </div>
         <footer class="inferior">
             <h2 class="inferior__title">Inferior</h2>
